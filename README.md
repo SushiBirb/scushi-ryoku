@@ -1,222 +1,225 @@
 <div align="center">
 
-<img src="ryoku/assets/brand/logo-mark-v2.png" alt="Ryoku" width="140" />
+<img src="ryoku/assets/brand/logo-mark-v2.png" alt="Ryoku Logo" width="140" />
 
-# Ryoku
+# scushi-ryoku
 
-**力と美のために** &middot; *For the sake of power and beauty.*
-
-A hand-built Linux desktop: one shell, three compositors, four distributions,
-all from one repository.
+**Scushi's Personal Arch Linux + Hyprland Daily Driver OS & Dotfiles**  
+*Built on [Ryoku](https://github.com/Ryoku-dev/ryoku) with bespoke Wayland patches, custom QML modules, and tailored workflow ergonomics.*
 
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-E2342A?style=for-the-badge)](LICENSE)
-[![Release status](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fiso.ryoku.dev%2Fstable%2Flatest.json&query=%24.channel&label=status&color=E2342A&style=for-the-badge)](https://ryoku.dev)
-[![Build ISO](https://github.com/ryoku-dev/ryoku/actions/workflows/build-iso.yml/badge.svg)](https://github.com/ryoku-dev/ryoku/actions/workflows/build-iso.yml)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/8KjBmUEyKA)
-[![Reddit](https://img.shields.io/badge/Reddit-r%2FRyokuArch-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/RyokuArch/)
+[![Built on Arch](https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=archlinux&logoColor=white)](https://archlinux.org)
+[![Hyprland](https://img.shields.io/badge/Hyprland-58E1C2?style=for-the-badge&logoColor=white)](https://hypr.land)
+[![Quickshell](https://img.shields.io/badge/Quickshell-FFADE4?style=for-the-badge&logoColor=black)](https://github.com/outfoxxed/quickshell)
+[![Fish Shell](https://img.shields.io/badge/Fish-43C0C0?style=for-the-badge&logo=fish&logoColor=white)](https://fishshell.com)
+[![Neovim](https://img.shields.io/badge/Neovim-57A143?style=for-the-badge&logo=neovim&logoColor=white)](https://neovim.io)
+[![Kitty](https://img.shields.io/badge/Kitty-202020?style=for-the-badge&logoColor=white)](https://sw.kovidgoyal.net/kitty/)
 
-[![Arch Linux](https://img.shields.io/badge/Arch_Linux-0d0d0d?style=for-the-badge&logo=archlinux&logoColor=white)](#editions)
-[![CachyOS](https://img.shields.io/badge/CachyOS-0d0d0d?style=for-the-badge&logo=cachyos&logoColor=white)](#editions)
-[![Void Linux](https://img.shields.io/badge/Void_Linux-0d0d0d?style=for-the-badge&logo=voidlinux&logoColor=white)](#editions)
-[![Fedora](https://img.shields.io/badge/Fedora-0d0d0d?style=for-the-badge&logo=fedora&logoColor=white)](#editions)
-[![Hyprland](https://img.shields.io/badge/Hyprland-0d0d0d?style=for-the-badge&logo=hyprland&logoColor=white)](https://hypr.land)
-[![niri](https://img.shields.io/badge/niri-0d0d0d?style=for-the-badge&logo=niri&logoColor=white)](https://github.com/YaLTeR/niri)
-[![Wayfire](https://img.shields.io/badge/Wayfire-0d0d0d?style=for-the-badge)](https://wayfire.org)
-
-<kbd>[Download](https://ryoku.dev)</kbd> &middot; <kbd>[Showroom](https://ryoku.dev/showroom)</kbd> &middot; <kbd>[What Ryoku is](docs/ryoku.md)</kbd> &middot; <kbd>[Docs](docs/)</kbd> &middot; <kbd>[Contributing](CONTRIBUTING.md)</kbd>
+<kbd>[Live Site](https://scushi.dev)</kbd> &middot; <kbd>[Dotfiles Tour](#dotfiles-directory-tour)</kbd> &middot; <kbd>[Custom Features](#key-customizations--features)</kbd> &middot; <kbd>[Hyprland Rules](#hyprland-configuration--workspace-layout)</kbd> &middot; <kbd>[Installation](#installation--deployment)</kbd> &middot; <kbd>[Upstream Ryoku](https://github.com/Ryoku-dev/ryoku)</kbd>
 
 </div>
 
-<img src="docs/media/showroom/blue-hour.webp" alt="A Ryoku desktop at blue hour: the bar along the top, a large clock on the wallpaper, nothing else asking for attention" width="100%" />
+---
 
-<table>
-  <tr>
-    <td width="33%"><img src="docs/media/showroom/red-august.webp" alt="A samurai under a red sun, the date in the corner" width="100%" /><br /><sub>Red August</sub></td>
-    <td width="33%"><img src="docs/media/showroom/rose.webp" alt="A pink room with the clock, system readings and a music card" width="100%" /><br /><sub>Rose</sub></td>
-    <td width="33%"><img src="docs/media/showroom/teal.webp" alt="A teal figure with a red saber, a good-night card" width="100%" /><br /><sub>Teal</sub></td>
-  </tr>
-  <tr>
-    <td width="33%"><img src="docs/media/showroom/aether.webp" alt="A tan room with the Hub profile and a terminal open" width="100%" /><br /><sub>Aether</sub></td>
-    <td width="33%"><img src="docs/media/showroom/olive-dusk.webp" alt="An olive desktop with the clock, a calendar and a visualizer" width="100%" /><br /><sub>Olive dusk</sub></td>
-    <td width="33%"><img src="docs/media/showroom/katakana-red.webp" alt="A horned silhouette on red, a music card and a visualizer" width="100%" /><br /><sub>Katakana red</sub></td>
-  </tr>
-</table>
+## Overview
 
-<div align="center"><sub>Real desktops, from the <a href="https://ryoku.dev/showroom">showroom</a>. The bar, the widgets and the frame all retint from the wallpaper.</sub></div>
+This repository represents the exact, battle-tested system configuration and dotfiles that I use every single day for software development, reverse engineering, academic coursework, and gaming.
 
-## What it is
+It is built as a personalized fork and extension of **[Ryoku](https://github.com/Ryoku-dev/ryoku)**, an opinionated Arch Linux desktop environment powered by Hyprland and Quickshell. On top of the upstream base, I have developed bespoke patches for interactive wallpaper engine compatibility, dynamic MPRIS-gated audio visualization, automated solar color temperature scheduling, custom Neovim development runners, and a distinctive sharp-geometry aesthetic.
 
-Ryoku means power, and the name is the point. The desktop is one continuous
-surface: the bar, the panels, the launcher, the lockscreen and the session
-controls move as a single thing, paper and ink, warm bone type on pure black,
-with the frame retinting live from your wallpaper. Click a widget on the bar and
-its controls grow out of the rail; let go and they melt back. It is built from
-small independent surfaces, so it grows with what you actually use: seven bar
-styles, desktop widgets, a store for more, and a plugin host.
+Whether you came here from the **dotfiles** link on **[scushi.dev](https://scushi.dev)** or stumbled upon this on GitHub, this repo provides full transparency into my entire desktop environment.
 
-Underneath, Ryoku is a distribution, not a config dump. The desktop, the
-installer and the system definition live in this repository, every machine is
-built from it, and a live machine is only ever a deployment target. It is a
-community-first passion project led by one maintainer in their spare time and
-improved by generous contributors, and it favours a rich, deliberate desktop on
-capable hardware over a lightweight one.
+---
 
-Ryoku 1.0, Amaterasu, is the first stable release. Arch and CachyOS are the
-stable editions. Void and Fedora ship the same desktop and update path, but
-remain experimental while those editions get wider hardware coverage.
+## Daily Driver Vitals & Hardware
 
-## Editions
+| Component | Specification | Notes |
+| :--- | :--- | :--- |
+| **OS** | Arch Linux (x86_64 rolling) | Standard Arch kernel + CachyOS optimizations |
+| **Compositor** | Hyprland 0.54+ | Configured via Ryoku's Lua `hl` API |
+| **Desktop Shell** | Quickshell (Qt6 / QML) | Custom `Desktop.qml` & `Visualizer.qml` patches |
+| **Primary Display** | `DP-2`: 2560x1440 @ 144Hz | Main workspace for code, terminal, and games |
+| **Secondary Display**| `HDMI-A-1`: 1920x1080 @ 72Hz | Positioned at `2560x324` for Discord & music |
+| **Theme & Palette** | Signature Scushi Dark / Magenta | Accent `#ffade4` (`rgb(255, 173, 229)`), Dark `#131313` |
+| **Window Geometry** | Sharp / Rectangular | `rounding = 0`, `gaps_in = 9`, `gaps_out = 9`, `border_size = 1` |
+| **Shell & Terminal**| Fish Shell + Kitty / Ghostty | Atuin history, `background_opacity 0.7`, `cursor_trail 0` |
+| **Editor** | Neovim (LazyVim base) | Multi-language floating terminal runner (`<F5>` / `<leader>r`) |
+| **Bar Layout** | QS Bar (`islands` mode) | Centered 10-workspace magic island, corner radius 8 |
 
-| Edition | Compositors | Get it | Status |
-|---|---|---|---|
-| **Arch Linux** | Hyprland, niri, Wayfire | signed ISO, or the [one-liner on an existing install](docs/install-without-iso.md#existing-arch-linux) | stable |
-| **CachyOS** | Hyprland, niri, Wayfire | signed ISO, or [the one-liner](docs/install-without-iso.md#existing-cachyos) | stable |
-| **Void Linux** glibc, runit | niri | signed ISO, or [the one-liner](docs/install-without-iso.md#void-linux) | experimental |
-| **Fedora** 44 and 45 | Hyprland, niri | [the one-liner, on Workstation, KDE Plasma, Server or a spin](docs/install-without-iso.md#existing-fedora-44-or-45) | experimental |
-| **NixOS** | Hyprland, niri | [Ryoku on NixOS](https://github.com/Ryoku-dev/Ryoku-on-NixOS), a port for flake-based systems | community |
+---
 
-Every edition is `x86_64` and ships the same shell from a signed native
-repository (pacman, XBPS or RPM). The Arch edition keeps an Arch userland and
-can opt into **Gaming with CachyOS** during installation or add the same
-**CachyOS Gaming** bundle from RyoStore later. The CachyOS ISO is CachyOS from
-the live kernel through the installed system: CachyOS repositories, kernels,
-identity, tuning, hooks, and tools with Ryoku as its desktop. The Void ISO can
-add Steam and its 32-bit graphics stack with the installer Gaming question.
+## Key Customizations & Features
 
-Hyprland and niri are the first-class compositors; Wayfire 0.11 is the
-experimental third on Arch and CachyOS, reached by switching desktops in the
-Hub or with `ryoku wm use wayfire`. Void is niri-only until it ships GCC 15
-([why](void/README.md)). Fedora converts an existing mutable system in place,
-keeps GRUB with a Ryoku snapshots submenu, and leaves NVIDIA on nouveau
-([details](fedora/README.md)).
+### 1. HyprWpE Dynamic Wallpaper Engine Integration (`quickshell/Desktop.qml`)
+Ryoku's standard desktop background layer actively renders static wallpapers or its own video engine. To seamlessly run interactive and animated live wallpapers from **[HyprWpE](https://github.com/SushiBirb/HyprWpE)** (such as `mpvpaper`, `web_viewer.py`, or `linux-wallpaperengine`), I implemented a background process probe in Quickshell:
 
-The [no-ISO guide](docs/install-without-iso.md) covers each existing-system
-path, starting from a stock Void installation.
+```qml
+// Detect external wallpaper engines (HyprWpE: mpvpaper, web_viewer.py, linux-wallpaperengine)
+// When an external wallpaper is running on the background layer, yield the backdrop so it shows through.
+property bool hyprwpeActive: false
 
-## The desktop
+Process {
+    id: hyprwpeProbe
+    command: ["pgrep", "-f", "mpvpaper|web_viewer.py|linux-wallpaperengine"]
+    onExited: (code) => {
+        root.hyprwpeActive = (code === 0);
+    }
+}
+```
+When an external engine runs, Quickshell immediately yields its solid wallpaper backdrop and frosted glass effects, preventing visual tearing and letting full 144Hz live wallpapers show through.
 
-<table>
-  <tr>
-    <td width="33%"><img src="docs/media/launcher.webp" alt="The launcher" width="100%" /><br /><sub><b>Launcher.</b> At rest a clock, the weather and a plate of art; type, and apps, commands, files, packages, radio and the calculator come out of one search.</sub></td>
-    <td width="33%"><img src="docs/media/controls.webp" alt="The control sidebar" width="100%" /><br /><sub><b>Control sidebar.</b> Session, connect tiles, sound and brightness, media, calendar and the power profile on one rail.</sub></td>
-    <td width="33%"><img src="docs/media/profile.webp" alt="The Ryoku Hub" width="100%" /><br /><sub><b>Ryoku Hub.</b> Every setting, a live dossier of the machine, the store, and the desktop switch.</sub></td>
-  </tr>
-</table>
+### 2. MPRIS Audio-Gated Reactive Visualizer (`quickshell/Visualizer.qml`)
+Instead of a desktop audio visualizer constantly consuming GPU/CPU cycles or cluttering the screen when nothing is playing, `Visualizer.qml` connects directly to DBus MPRIS services:
 
-On first login a short welcome walks you through the handful of keybinds that
-open almost everything and lets you pick the interface scale, the bar and the
-desktop widgets. Everything else lives in the Ryoku Hub (`Super + ,`). The bar
-is a choice, not a given: **Orpheus** (the default, a liquid top bar), **QS Bar**
-(in full colour), **Sumi** (the monochrome rail), **Kairos** (one island carrying
-the clock), **Shima**, **Python** and **Nomarchy** all ship, and every one of them
-reads the desktop through the same window-manager seam rather than a
-compositor's own API ([`docs/barstyles.md`](docs/barstyles.md)).
+- Dynamically queries all active MPRIS media players (with dedicated matching for **Sone** and browser playback).
+- Automatically lifts and renders the visualizer onto the desktop when music is actively playing.
+- Seamlessly hides and pauses the visualizer when music is stopped or paused.
 
-<div align="center">
-  <a href="https://youtu.be/kx7VW4Mg0m4"><img src="https://img.youtube.com/vi/kx7VW4Mg0m4/maxresdefault.jpg" alt="Ryoku showcase on YouTube" width="560" /></a>
-  <br /><sub>&#9654; <a href="https://youtu.be/kx7VW4Mg0m4">Watch the showcase</a></sub>
-</div>
+### 3. Solar Night Light Scheduler (`hyprsunset-scheduler.py`)
+An offline, mathematical night light scheduler written in Python:
+- Caches local latitude and longitude coordinates.
+- Computes exact daily sunrise and sunset times using offline **NOAA solar calculation algorithms**.
+- Generates a buttery-smooth **1-hour color temperature ramp** starting at sunset (transitioning from 6500K daylight down to 4000K night temperature).
+- Smoothly transitions back to daylight at sunrise.
+- Updates color temperature dynamically via `hyprctl` IPC without flickering or frame drops.
 
-## Install
+### 4. Universal Neovim Quick-Runner (`nvim/lua/config/keymaps.lua`)
+A single keypress (`<F5>` or `<leader>r`) in Neovim:
+1. Automatically formats the buffer with `conform.nvim` (Prettier, Clang-Format, CSharpier, etc.).
+2. Auto-saves modified buffers.
+3. Detects the filetype and executes the appropriate compiler/interpreter in an ergonomic floating terminal window (via Snacks.terminal):
+   - **C++ / C:** `g++ -std=c++20 -Wall -Wextra -O2` / `gcc`
+   - **C#:** `dotnet run` (auto-detects `.csproj` / `.sln` project roots)
+   - **Rust:** `cargo run` (auto-detects `Cargo.toml`)
+   - **Python:** `python3`
+   - **Java:** `javac` + `java`
+   - **TypeScript / JavaScript:** `npx tsx` / `node`
+   - **Bash / Shell:** `bash`
+   - **HTML:** Launches directly in `zen-browser` via `xdg-open`
 
-**From the ISO.** Download the Arch, CachyOS or Void image from
-[ryoku.dev](https://ryoku.dev) with its signature, write it to a USB stick and
-boot it. The guided installer partitions the disk, installs the base system and
-the desktop from the signed repository, sets up Limine, and configures Btrfs
-snapshots unless you turn them off. Releases are signed by `Ryoku Releases
-<releases@ryoku.dev>`, fingerprint `EB6D 3C0F 55A7 B3CA BA6B  2838 847B 274F
-025D D6E3`, key in [`keys/`](keys/ryoku-release-key.pub.asc):
+### 5. Fastfetch with Cbonsai & Custom Vitals (`fastfetch/config.jsonc`)
+A customized terminal greeting featuring dynamic `cbonsai` procedural ASCII bonsai trees, signature magenta headers, and structured telemetry cards:
+- **VITALS:** CPU load, GPU detection, RAM usage, and NVMe disk capacity.
+- **SYSTEM:** Kernel, Hyprland WM identifier, Fish shell, installed pacman/yay package count.
+- **SESSION:** System uptime, OS install age calculation in days, and terminal host.
 
-```bash
-gpg --import keys/ryoku-release-key.pub.asc
-gpg --verify ryoku-*.iso.sig ryoku-*.iso
+---
+
+## Hyprland Configuration & Workspace Layout
+
+My Hyprland overrides in `dotfiles/hypr/user.lua` enforce strict window assignments, display pinning, and input handling:
+
+```
+[ DP-2: 2560x1440 @ 144Hz ]                [ HDMI-A-1: 1920x1080 @ 72Hz ]
+┌─────────────────────────────┐            ┌─────────────────────────────┐
+│ Workspace 1: Zen Browser    │            │ Workspace 2: Discord        │
+│ Workspace 3: Steam Client   │            │ Workspace 10: Sone (Music)  │
+│ Workspace 5: Gaming Arena   │            └─────────────────────────────┘
+└─────────────────────────────┘
 ```
 
-**On a machine you already have.** One line converts an existing Arch, CachyOS,
-Void glibc or Fedora system in place. It backs up your configs (with a
-`restore.sh` to undo), trusts the signed repository, moves you off conflicting
-shells and daemons, and wires up the full desktop. It never partitions a disk.
+### Window Rules & Ergonomics
+- **Dedicated Gaming Workspace (WS 5):** Automatic detection for Steam games (`^steam_app_.*$`), *Marvel's Spider-Man*, and Roblox/Sober (`^sober$`, `^org\.vinegarhq\.Sober$`) routed directly to Workspace 5 with auto-focus.
+- **Strict Opacity Enforcement:** Window classes for `Zen`, `Discord`, and `Sone` are permanently locked to 100% opacity (`opaque = true`) to prevent readability fatigue from inactive window dimming.
+- **Continuous Follow-Mouse Hover Enforcement:** A persistent background event listener synchronizes with `desktop.json` to ensure window focus tracks cursor hover without getting stuck when returning from Proton/Wine full-screen games.
+- **Single Super Tap Launcher:** Releasing the `Super` (Windows) key without chords opens the Ryoku app launcher instantly.
+- **Scratchpad Workspace:** `SUPER + S` toggles a floating scratchpad; `SUPER + ALT + S` stashes or un-stashes the focused window.
+- **Night Light Manual Override:** `SUPER + U` toggles hyprsunset immediately.
+- **Controller Ergonomics:** Disables the PlayStation / DualShock / DualSense touchpad mouse emulation to prevent unintentional cursor movement while gaming with a connected gamepad.
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/ryoku-dev/ryoku/main/ryoku-shell-installer/install.sh | bash
+---
+
+## Dotfiles Directory Tour
+
+The `dotfiles/` directory is organized modularly and mirrors `~/.config`:
+
+```
+dotfiles/
+├── hypr/
+│   ├── user.lua                     # Core user overrides (window rules, inputs, keybinds)
+│   ├── settings.lua                 # Hyprland appearance, gaps (9px), borders (1px, 0 radius)
+│   ├── rebinds.lua                  # Keybind overrides
+│   ├── monitors.lua                 # Output resolutions, refresh rates, and relative offsets
+│   ├── monitors_user.lua            # Manual pin overrides
+│   └── scripts/
+│       ├── hyprsunset-scheduler.py  # Automated NOAA solar sunrise/sunset night light daemon
+│       └── user-autostart.sh        # Boot orchestration (network check, wallpaper, core apps)
+├── quickshell/
+│   ├── shell/modules/desktop/
+│   │   └── Desktop.qml              # HyprWpE external live wallpaper passthrough patch
+│   ├── shell/modules/visualizer/
+│   │   └── Visualizer.qml           # Sone MPRIS-gated audio visualizer patch
+│   └── reload-cover/assets/
+│       └── logo.png                 # Custom reload cover logo
+├── fish/
+│   ├── config.fish                  # Main fish initialization and path declarations
+│   └── user.fish                    # Atuin history integration, typo helpers (pamcan, celar)
+├── kitty/
+│   ├── user.conf                    # background_opacity 0.7, cursor_trail 0
+│   ├── kitty.conf                   # Font stack (Space Grotesk, JetBrains Mono)
+│   └── current-theme.conf           # Signature Scushi dark/magenta color palette
+├── ghostty/
+│   ├── config                       # Ghostty terminal config
+│   └── ryoku-colors                 # Ghostty palette definition
+├── fastfetch/
+│   └── config.jsonc                 # cbonsai ASCII art, magenta accents, system vitals
+├── btop/
+│   └── btop.conf                    # System monitor layout, vim keys, braille graphs
+├── nvim/
+│   └── lua/config/
+│       └── keymaps.lua              # F5 universal compile-and-run floating terminal
+├── qt6ct/
+│   └── qt6ct.conf                   # Qt application font and color synchronization
+└── ryoku/
+    ├── desktop.json                 # Ryoku desktop settings (rounding 0, gaps 9, pop style)
+    ├── theme.json                   # Wallpaper color-following mode
+    ├── shell.json                   # QS Bar top island layout, widget assignments
+    └── matugen.json                 # TonalSpot material color scheme preferences
 ```
 
-Append `-s -- --dry-run` after `bash` to see everything it would do first.
+---
 
-> [!WARNING]
-> The shell installer rewrites your desktop configuration in place and is still
-> being tested across hardware and setups. Back up first, run the dry run, and
-> prefer a machine you can afford to reinstall. What it does on each
-> distribution, and the limits there, are in
-> [`ryoku-shell-installer/`](ryoku-shell-installer/README.md).
+## Installation & Deployment
 
-The [step-by-step no-ISO guide](docs/install-without-iso.md) starts with a stock
-Void installation and also covers Arch, CachyOS, Fedora and NixOS.
-
-## Day to day
-
+### 1. Clone the Repository
 ```bash
-ryoku update            # Ryoku packages, configs and the doctor
-ryoku update --system   # the same, plus the Void or Fedora base system
-sudo pacman -Syu        # Arch or CachyOS base system and kernel
-ryoku rollback          # the ten frozen builds you can return to
-ryoku recovery          # last resort: rebuild the whole desktop from main
+git clone https://github.com/SushiBirb/scushi-ryoku.git
+cd scushi-ryoku
 ```
 
-`ryoku update` snapshots first where the host can, moves the packages the
-signed repository serves, re-lays the desktop configs, runs the doctor and
-reloads the shell. Your own edits live in override files it never touches, so
-they survive every update. When even the `ryoku` command is gone, the recovery
-runs straight from the repo at a TTY:
-
+### 2. Preview Deployment (Dry-Run)
+To see exactly what files will be linked without touching your existing configuration:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ryoku-dev/ryoku/main/bin/ryoku-recovery | bash
+./install.sh --dry-run
 ```
 
-On Arch, **Gaming with CachyOS** is offered during installation and the same
-bundle is available later in RyoStore ([`docs/kernels.md`](docs/kernels.md)).
-[`docs/updates.md`](docs/updates.md) is how a change reaches you;
-[`docs/cli.md`](docs/cli.md) is every `ryoku` command.
+### 3. Deploy Dotfiles
+To deploy with automatic backups of any existing configurations in `~/.config`:
+```bash
+# Symlink mode (recommended for continuous development)
+./install.sh
 
-## Hardware
+# Or copy mode (standalone copy without symlinks)
+./install.sh --copy
+```
 
-|  | Minimum | Recommended |
-|---|---|---|
-| CPU | 64-bit x86_64, dual-core | quad-core or better |
-| RAM | 4 GB | 8 GB, 16 GB with the dev toolchains |
-| GPU | any card with working KMS and OpenGL/Vulkan | recent integrated or discrete |
-| Storage | 32 GB (installer floor) | 64 GB+ SSD |
-| Firmware | Arch/CachyOS ISO: UEFI; Void ISO: BIOS or UEFI; Secure Boot off | UEFI, Secure Boot off |
+### 4. Reload Desktop Surfaces
+```bash
+# Reload Hyprland window rules and keybinds
+hyprctl reload
 
-The shell is an accelerated Qt surface, so it wants a real GPU: AMD on Mesa,
-Intel from Broadwell on, NVIDIA on the open modules from Turing on and the
-proprietary ones before that, all picked at install time. A resting session
-uses under 1 GB of RAM. Driver details, hybrid laptops, and the playbook for
-awkward hardware (Intel VMD, NVIDIA modeset, Windows dual-boot, Broadcom Wi-Fi)
-are in [`docs/installation-hardware.md`](docs/installation-hardware.md).
+# Reload Quickshell desktop, bar, and modules
+ryoku reload
+```
 
-## Where things are
+---
 
-| Guide | What it covers |
-|---|---|
-| [`docs/install-without-iso.md`](docs/install-without-iso.md) | Install on stock Void or an existing Arch, CachyOS or Fedora system. |
-| [`docs/ryoku.md`](docs/ryoku.md) | What Ryoku is and how the parts fit. |
-| [`docs/structure.md`](docs/structure.md) | The repo map: `ryoku/` is the desktop, `system/` the machine, `installation/`, `void/` and `fedora/` the installers and packaging, `release/` the signed repo. |
-| [`docs/compositors.md`](docs/compositors.md) | The window-manager seam: what each compositor can do, and how to add one. |
-| [`docs/barstyles.md`](docs/barstyles.md) | The seven bar styles, and how to ship another. |
-| [`docs/updates.md`](docs/updates.md) | Channels: `main` is stable, `unstable-dev` is the gated preview, and how a change reaches an installed machine. |
-| [`CONTRIBUTING.md`](CONTRIBUTING.md) | The commit gates and how to send a change. |
+## Credits & Upstream Attribution
 
-## Credits and license
-
-Ryoku's alpha series began as a fork of Omarchy by David Heinemeier Hansson and
-contributors; from the beta series on it was rebuilt from an empty root and
-shares no code with it. The shell is Ryoku's own, with its frame-blob rendering
-and some animation adapted from the
-[Caelestia shell](https://github.com/caelestia-dots/shell) and parts of the
-display configuration UI from
-[DankMaterialShell](https://github.com/AvengeMedia/DankMaterialShell). The bar
-styles carry their upstreams with them: QS Bar from HANCORE-linux's Quickshell
-Rise, Shima from snowarch's iNiR, Python from ilyamiro's Serpantinum, Nomarchy
-from Omarchy quattro. Full attribution is in [`NOTICE`](NOTICE). Ryoku is
-released under the [GNU GPL v3](LICENSE).
+`scushi-ryoku` is built upon the incredible work of the **[Ryoku](https://github.com/Ryoku-dev/ryoku)** distribution:
+- **Upstream Project:** [Ryoku-dev/ryoku](https://github.com/Ryoku-dev/ryoku)
+- **License:** GNU General Public License v3.0 ([LICENSE](LICENSE))
+- **Shell Architecture:** [Quickshell](https://github.com/outfoxxed/quickshell)
+- **Compositor:** [Hyprland](https://hypr.land)
+- **Live Wallpaper Engine:** [HyprWpE](https://github.com/SushiBirb/HyprWpE)
+- **Author & Customizations:** [SushiBirb / Scushi](https://scushi.dev)
