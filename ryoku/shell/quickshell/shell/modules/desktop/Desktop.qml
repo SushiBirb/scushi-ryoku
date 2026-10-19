@@ -46,14 +46,38 @@ Scope {
     // while the C player owns the background layer.
     property bool wallpaperLive: false
 
+    // Detect external wallpaper engines (HyprWpE: mpvpaper, web_viewer.py, linux-wallpaperengine)
+    // When an external wallpaper is running on the background layer, yield the backdrop so it shows through.
+    property bool hyprwpeActive: false
+
+    Process {
+        id: hyprwpeProbe
+        command: ["pgrep", "-f", "mpvpaper|web_viewer.py|linux-wallpaperengine"]
+        onExited: (code) => {
+            root.hyprwpeActive = (code === 0);
+        }
+    }
+
+    Timer {
+        interval: 1000
+        running: true
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: {
+            if (!hyprwpeProbe.running) {
+                hyprwpeProbe.running = true;
+            }
+        }
+    }
+
     // Stage z-ordering (docs/stage.md): behind-layers sit below the widgets
     // (z 2), in-front layers above them (z 4), and a widget the user lifted
     // (Config.front) rises above even the in-front layers (z 5). Gated off for
     // video/live walls, which the daemon skips.
     readonly property bool stageOn: StageCfg.StageBackend.isActiveFor(root.wallpaperPath)
-        && root.videoUrl === "" && !root.wallpaperLive
+        && root.videoUrl === "" && !root.wallpaperLive && !root.hyprwpeActive
     readonly property bool stageParallax: StageCfg.StageBackend.isParallaxFor(root.wallpaperPath)
-        && root.videoUrl === "" && !root.wallpaperLive
+        && root.videoUrl === "" && !root.wallpaperLive && !root.hyprwpeActive
     function widgetZ(id) {
         if (!root.stageOn)
             return 0;
@@ -444,7 +468,7 @@ Scope {
             fit: root.wallpaperFit
             transition: root.wallpaperTransition
             videoUrl: root.videoUrl
-            live: root.wallpaperLive
+            live: root.wallpaperLive || root.hyprwpeActive
             videoMuted: root.videoMuted
             videoVolume: root.videoVolume
         }
@@ -477,7 +501,7 @@ Scope {
         // frosted widget from this offscreen copy. WidgetGlass hides this
         // source after taking its crop. Hidden while a video plays: the glass
         // samples the still, and a live clip would freeze the capture.
-        readonly property bool glassWanted: root.widgetsEnabled && root.videoUrl === ""
+        readonly property bool glassWanted: !root.hyprwpeActive && root.widgetsEnabled && root.videoUrl === ""
             && ((Config.calendarEnabled && Config.calendarStyle === "glass")
                 || (Config.musicEnabled && Config.musicStyle === "glass"))
         Image {
@@ -1014,7 +1038,7 @@ Scope {
                 root.openWidgetMenu(p[0], p[1], p[2]);
             }
             sourceComponent: Component {
-                WidgetMenu { desktop: root }
+                WidgetMenu {}
             }
         }
 

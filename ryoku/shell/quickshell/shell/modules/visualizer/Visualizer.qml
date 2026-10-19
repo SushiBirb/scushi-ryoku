@@ -4,6 +4,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Services.Mpris
 import "Singletons"
 
 // desktop audio visualiser module entry. click-through, palette-tinted cava
@@ -29,7 +30,53 @@ Item {
     property bool suppressed: false
     signal placingDone
 
-    readonly property bool active: root.mode !== "off"
+    // Gate visualizer visibility so it only appears when Sone is actively playing audio
+    property bool sonePlaying: false
+
+    function updateSoneStatus() {
+        var list = Mpris.players ? Mpris.players.values : [];
+        if (!list) {
+            root.sonePlaying = false;
+            return;
+        }
+        for (var i = 0; i < list.length; i++) {
+            var p = list[i];
+            if (!p) continue;
+            var name = (String(p.identity || "") + " " + String(p.dbusName || "") + " " + String(p.desktopEntry || "")).toLowerCase();
+            if (name.indexOf("sone") !== -1 && p.isPlaying) {
+                root.sonePlaying = true;
+                return;
+            }
+        }
+        root.sonePlaying = false;
+    }
+
+    Connections {
+        target: Mpris.players
+        function onValuesChanged() { root.updateSoneStatus(); }
+    }
+
+    Instantiator {
+        model: Mpris.players
+        delegate: Connections {
+            required property var modelData
+            target: modelData
+            function onIsPlayingChanged() { root.updateSoneStatus(); }
+            function onIdentityChanged() { root.updateSoneStatus(); }
+            function onPlaybackStateChanged() { root.updateSoneStatus(); }
+        }
+    }
+
+    Timer {
+        interval: 500
+        repeat: true
+        running: root.mode !== "off"
+        onTriggered: root.updateSoneStatus()
+    }
+
+    Component.onCompleted: root.updateSoneStatus()
+
+    readonly property bool active: root.mode !== "off" && (root.placing || root.sonePlaying)
     readonly property bool placeable: root.placing && root.active
     readonly property bool raised: root.mode === "overlay" || root.placeable
 
@@ -108,25 +155,14 @@ Item {
                     required property int index
                     anchors.fill: parent
                     cfg: VizItem { data: Config.dataAt(vizView.index) }
-                    // The first read of activeView happens while the Repeater is
-                    // still empty; delegate creation changes neither count nor
-                    // the active index, so this is the only signal that re-fires
-                    // the binding once the views exist.
-                    Component.onCompleted: root.viewsReady++
                 }
             }
         }
     }
 
     // The active view, for the placement overlay to frame and colour-match.
-    // `viewsReady` is bumped by each delegate once it exists: the first read of
-    // this binding happens while the Repeater is still empty, and delegate
-    // creation changes neither `rep.count` nor `Config.active`, so without that
-    // signal the binding latches null and the Placer never loads.
-    property int viewsReady: 0
     readonly property Item activeView: {
-        root.viewsReady;   // rebuild the binding when delegates appear
-        rep.count;         // rebuild the binding when the delegates change
+        rep.count;   // rebuild the binding when the delegates change
         return rep.itemAt(Config.active);
     }
 

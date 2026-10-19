@@ -78,3 +78,7 @@ end
 # user overrides: ~/.config/fish/user.fish is never shipped, never touched on
 # update, and loads last so your stuff wins.
 test -f $__fish_config_dir/user.fish && source $__fish_config_dir/user.fish
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/scushi/.local/bin" $PATH
