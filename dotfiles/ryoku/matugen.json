@@ -5,7 +5,7 @@
   "lightnessLight": 0,
   "prefer": "saturation",
   "schemeType": "scheme-rainbow",
-  "sourceColorIndex": 1,
+  "sourceColorIndex": 0,
   "themeRyokuApps": true,
   "templates": {
     "alacritty": true,
@@ -25,6 +25,8 @@
     "papirus": true,
     "qt": true,
     "qt5": true,
+    "ryotunes": true,
+    "sidra": true,
     "steam": true,
     "telegram": true,
     "tmux": true,

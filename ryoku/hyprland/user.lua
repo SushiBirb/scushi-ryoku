@@ -6,6 +6,13 @@
 -- Environment variables
 hl.env("GTK_IM_MODULE", "simple")
 
+-- Crossfade HyprWpE wallpaper layer surfaces cleanly (suppress popin flicker)
+hl.layer_rule({
+  name      = "hyprwpe-crossfade",
+  match     = { namespace = "^(hyprwpe-web|hyprwpe-viewer)$" },
+  animation = "fade",
+})
+
 -- Monitor -> default workspace bindings
 hl.workspace_rule({ workspace = "1", monitor = "DP-2", default = true })
 hl.workspace_rule({ workspace = "2", monitor = "HDMI-A-1", default = true })
