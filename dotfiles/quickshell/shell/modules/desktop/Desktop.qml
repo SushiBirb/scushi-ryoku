@@ -46,13 +46,13 @@ Scope {
     // while the C player owns the background layer.
     property bool wallpaperLive: false
 
-    // Detect external wallpaper engines (HyprWpE: mpvpaper, web_viewer.py, linux-wallpaperengine)
+    // Detect external wallpaper engines (HyprWpE: mpvpaper, web_viewer.py, linux-wallpaperengine, hyprwpe-web, hyprwpe-viewer)
     // When an external wallpaper is running on the background layer, yield the backdrop so it shows through.
     property bool hyprwpeActive: false
 
     Process {
         id: hyprwpeProbe
-        command: ["pgrep", "-f", "mpvpaper|web_viewer.py|linux-wallpaperengine"]
+        command: ["pgrep", "-f", "mpvpaper|web_viewer.py|linux-wallpaperengine|hyprwpe-web|hyprwpe-viewer"]
         onExited: (code) => {
             root.hyprwpeActive = (code === 0);
         }
